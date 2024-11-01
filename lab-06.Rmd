@@ -27,9 +27,28 @@ diamonds <- diamonds %>% rename(
 ## Exercise 1
 
 ```{r}
-# Do some preliminary investigations & cleaning
-
-
+diamonds_data <- diamonds%>%
+  drop_na()%>%
+  summarize(
+    avg_price = mean(price),
+    avg_length = mean(length_mm),
+    avg_width = mean(width_mm),
+    avg_depth = mean(depth_mm),
+    avg_table = mean(table_mm)
+    )
+ view(diamonds_data)
+ 
+ diamonds%>%
+   count(cut)
+ 
+ diamonds%>%
+   count(color)
+ 
+ diamonds%>%
+   count(clarity)
+ 
+ summary(diamonds)
+ 
 
 
 ```
@@ -42,14 +61,47 @@ diamonds <- diamonds %>% rename(
 diamonds <- diamonds %>%
   mutate(table_mm = table_pct * width_mm / 100)
 
-# Overall table_mm arithmetic mean?
+filter(diamonds, clarity == "I1")%>%
+  summarize(
+    I1_table_mean = mean(table_mm)
+  )
+
+filter(diamonds, clarity == "SI2")%>%
+  summarize(
+    SI2_table_mean = mean(table_mm)
+  )
+
+filter(diamonds, clarity == "SI1")%>%
+  summarize(
+    SI1_table_mean = mean(table_mm)
+  )
+
+filter(diamonds, clarity == "VS2")%>%
+  summarize(
+    VS2_table_mean = mean(table_mm)
+  )
+
+filter(diamonds, clarity == "VS1")%>%
+  summarize(
+    VS1_table_mean = mean(table_mm)
+  )
+
+filter(diamonds, clarity == "VVS2")%>%
+  summarize(
+    VVS2_table_mean = mean(table_mm)
+  )
+
+filter(diamonds, clarity == "VVS1")%>%
+  summarize(
+    VVS1_table_mean = mean(table_mm)
+  )
+
+filter(diamonds, clarity == "IF")%>%
+  summarize(
+    IF_table_mean = mean(table_mm)
+  )
 
 
-
-
-
-
-# table_mm arithmetic mean within each clarity category
 
 
 
@@ -58,10 +110,10 @@ diamonds <- diamonds %>%
 
 ```
 
-_Add your comment here_
+There are certain types of clarity that has a comparatively low table_mm compare to the others. I don't know what the clarity abbreviation meant so the conclusion is that the level of clarity is correlated to its average table length range.
 
 ```{r}
-# calculate the arithmetic mean across all numeric variables
+summary(diamonds)
 
 
 
